@@ -25,7 +25,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @click.native="updateData()">Save changes</button>
+                <button type="button" class="btn btn-primary" @click.prevent="updateData">Save changes</button>
               </div>
             </div>
           </div>
@@ -72,12 +72,7 @@
 
 <script>
     export default{
-                updateData: function(e){
-                e.preventDefault();
-                console.log('update');
-            },
-        
-                data() {
+        data() {
             return {
               data: null,
               formName: '',
@@ -89,6 +84,10 @@
             }
         },
         methods: {
+            updateData() {
+                alert('Hello, World!');
+                console.log('update');
+            },
 
             editForm(id){
                 axios.get('http://localhost:8000/api/edit/' + id).then((response)=>{
